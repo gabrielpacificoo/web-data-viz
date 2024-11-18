@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="./js/sessao.js"></script>
+
+    <link rel="stylesheet" href="./css/acessStyle.css" />
+    <link rel="stylesheet" href="./css/general.css" />
+    <title>Document</title>
+  </head>
+  <body class="fade-in">
+    <div style="background-color: #1f4e79" id="image">
+      <img src="./assets/img_acess.png" alt="" />
+    </div>
+
+    <div id="acess">
+      <h2>Acesse a sua Cloud!</h2>
+      <div id="inputs">
+        <div class="input-container">
+          <input type="text" id="input_email" required="" />
+          <label for="input" class="label">Email</label>
+          <div class="underline"></div>
+        </div>
+
+        <div class="input-container">
+          <input type="text" id="input_password" required="" />
+          <label for="input" class="label">Senha</label>
+          <div class="underline"></div>
+        </div>
+      </div>
+
+      <button onclick="entrar()">
+        <div class="button">
+          <div id="img_button">
+            <img src="./assets/buttonAcess.svg" alt="" />
+          </div>
+          <p id="txt_button">Verificar credenciais</p>
+        </div>
+      </button>
+
+      <p id="output"></p>
+
+      <p>
+        Não possuí conta?
+        <span onclick="redirect('./signin.html')">Cadastre-se</span>
+      </p>
+    </div>
+  </body>
+</html>
+<script>
+  function entrar() {
+    // aguardar();
+
+    var emailVar = input_email.value;
+    var senhaVar = input_password.value;
+
+    if (emailVar == "" || senhaVar == "") {
+      output.innerHTML = 'Campos em branco'
+      return
+    }
+
+    console.log("FORM LOGIN: ", emailVar);
+    console.log("FORM SENHA: ", senhaVar);
+
+    fetch("/usuarios/autenticar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        emailServer: emailVar,
+        senhaServer: senhaVar,
+      }),
+    })
+      .then(function (resposta) {
+        console.log("ESTOU NO THEN DO entrar()!");
+        if (resposta.ok) {
+          console.log(resposta);
+
+          resposta.json().then((json) => {
+            console.log(json);
+            console.log(JSON.stringify(json));
+            sessionStorage.EMAIL_USUARIO = json.email;
+            sessionStorage.ID_USUARIO = json.id;
+            sessionStorage.NOME_USUARIO = json.nome;
+            sessionStorage.NOME_EMPRESA = json.empresa;
+            
+
+            setTimeout(function () {
+              window.location = "./dashboard/managment.html";
+            }, 1000); // apenas para exibir o loading
+          });
+        } else {
+          console.log("Houve um erro ao tentar realizar o login!");
+
+          resposta.text().then((texto) => {
+            console.error(texto);
+            // finalizarAguardar(texto);
+          });
+        }
+      })
+      .catch(function (erro) {
+        console.log(erro);
+      });
+
+    return false;
+  }
+
+  function sumirMensagem() {
+    // cardErro.style.display = "none"
+  }
+</script>

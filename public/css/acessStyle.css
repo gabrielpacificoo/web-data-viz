@@ -1,0 +1,340 @@
+* {
+  margin: 0px;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow-y: hidden;
+
+  width: 100%;
+  height: 100%;
+}
+
+body #acess {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #1f4e79;
+  width: 40%;
+}
+
+body #acess h2 {
+  width: 100%;
+  height: 15%;
+
+  font-size: 45px;
+  color: #ffffff;
+  font-weight: lighter;
+
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+body #acess #inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+  margin: 30% 0% 0% 0%;
+}
+
+body #acess #inputs .input-container {
+  margin: 5%;
+}
+
+body #acess .input-container {
+  width: max-content;
+}
+
+body #acess .input-container input {
+  color: #ffffff;
+}
+
+body #acess .input-container label {
+  color: #ffffff;
+}
+
+body #acess button {
+  display: flex;
+
+  width: 60%;
+  height: 7.5%;
+
+  cursor: pointer;
+  background: none;
+  margin: 0px;
+  padding: 0px;
+  border: none;
+  border-radius: 20px 0px 0px 20px;
+  margin-bottom: 15%;
+
+  transition: transform 0.5s ease-in;
+}
+
+body #acess button:focus,
+body #acess button:hover {
+  border: 2px solid #fff;
+  outline: none;
+  transform: scale(1.05);
+}
+
+body #acess button .button {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+body #acess .button #img_button {
+  background-color: #905e37;
+  width: 20%;
+  height: auto;
+  border-radius: 20px 0px 0px 20px;
+  padding: 1%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body #acess .button #txt_button {
+  background-color: #b8794a;
+  width: 80%;
+  color: #ffffff;
+  font-weight: 400;
+  font-size: 3vh;
+  /* border-radius: 0px 10px 10px 0px; */
+  padding: 1% 2%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body #acess p {
+  font-size: larger;
+  color: #ffffff;
+}
+
+body #acess p span {
+  color: #ffc857;
+  cursor: pointer;
+}
+
+body #image img {
+  background-image: url(../assets/img_acess.png);
+  background-size: cover;
+  /* width: 60vh; */
+}
+
+body #image {
+  height: 100%;
+  /* width: calc(1366px - 546px); */
+}
+
+body #signin {
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: flex-start;
+  flex-wrap: wrap;
+}
+
+body #signin h2 {
+  width: 100%;
+  height: 10%;
+  font-size: 8vh;
+
+  color: #404040;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: lighter;
+}
+
+body #signin #inputs {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  width: 80%;
+  height: 50%;
+}
+
+body #signin button {
+  display: flex;
+
+  width: 60%;
+  height: 7.5%;
+  justify-content: center;
+
+  cursor: pointer;
+  background: none;
+  margin: 0px;
+  padding: 0px;
+  border: none;
+  border-radius: 20px 0px 0px 20px;
+  margin-bottom: 5%;
+
+  transition: transform 0.5s ease-in;
+}
+
+body #signin button:focus,
+body #signin button:hover {
+  border: 2px solid #202020;
+  outline: none;
+  transform: scale(1.05);
+}
+
+body #signin button .button {
+  display: flex;
+  height: 100%;
+  width: 100%;
+
+}
+
+body #signin .button #img_button {
+  background-color: #1F4E79;
+  width: 20%;
+  height: auto;
+  border-radius: 20px 0px 0px 20px;
+
+  padding: 1%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body #signin .button #txt_button {
+  background-color: #407BFF;
+  width: 80%;
+  color: #ffffff;
+  font-weight: 400;
+  font-size: 3vh;
+  /* border-radius: 0px 10px 10px 0px; */
+  padding: 1% 2%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#outputCadastro {
+  font-size: 2vh;
+  padding: 0% 5%;
+  margin-top: 1rem;
+  height: 3rem;
+}
+
+#span_ver {
+  font-size: 2vh;
+}
+
+body #signin p {
+  font-size: 2.5vh;
+  color: #909090;
+
+}
+
+body #signin p span {
+  cursor: pointer;
+  color: #404040;
+}
+
+.input-container-1 {
+  position: relative;
+  margin: 1% 5% 0% 5%;
+  width: 100%;
+  height: 15%;
+  /* display: flex; */
+}
+
+.input-container-1 input[type="text"],
+.input-container-1 input[type="password"] {
+  font-size: 3vh;
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid #202020;
+  padding: 5px 0;
+  background-color: transparent;
+  outline: none;
+}
+
+.input-container-1 .label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 2vh;
+  color: #202020;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+
+.input-container-1 input[type="text"]:focus ~ .label,
+.input-container-1 input[type="text"]:valid ~ .label,
+.input-container-1 input[type="password"]:focus ~ .label,
+.input-container-1 input[type="password"]:valid ~ .label {
+  top: -20px;
+  font-size: 2vh;
+  color: #202020;
+}
+
+.input-container-1 .underline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background-color: #202020;
+  transform: scaleX(0);
+  transition: all 0.3s ease;
+}
+/* 
+.input-container-1 input[type="text"]:focus ~ .underline,
+.input-container-1 input[type="text"]:valid ~ .underline {
+  transform: scaleX(1);
+} */
+
+#signin div:nth-child(3) {
+  width: 40%;
+}
+
+#signin div:nth-child(4) {
+  width: 40%;
+}
+
+.red {
+  content: '';
+  display: block;
+  margin: 1% 5% 0 5%;
+  width: 100%;
+  height: 15%;
+  background-color: transparent; /* Ajuste conforme necessário */
+  position: relative;
+}
+
+.red input[type="text"],
+.red input[type="password"] {
+  border-bottom: 2px solid #ff0000;
+  background-color: transparent;
+}
+
+.red .label {
+  color: #ff0000;
+}
+
+.red input[type="text"]:focus ~ .label,
+.red input[type="text"]:valid ~ .label,
+.red input[type="password"]:focus ~ .label,
+.red input[type="password"]:valid ~ .label {
+  color: #ff0000;
+}
+
+.red .underline {
+  background-color: #ff0000;
+}

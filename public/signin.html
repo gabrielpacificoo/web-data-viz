@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="./js/sessao.js"></script>
+
+    <link rel="stylesheet" href="./css/acessStyle.css" />
+    <link rel="stylesheet" href="./css/general.css" />
+    <title>Document</title>
+  </head>
+  <body class="fade-in">
+    <div id="signin">
+      <h2>Cadastre-se</h2>
+      <div id="inputs">
+        <div id="container_nome" class="input-container-1">
+          <input type="text" id="input_nome" required="" />
+          <label for="input" class="label">Insira seu nome completo</label>
+          <div class="underline"></div>
+        </div>
+
+        <div id="container_email" class="input-container-1">
+          <input type="text" id="input_email" required="" />
+          <label for="input" class="label">Insira seu principal e-mail</label>
+          <div class="underline"></div>
+        </div>
+
+        <div id="container_password" class="input-container-1">
+          <input type="password" id="input_password" required="" />
+          <label for="input" class="label">Escolha sua melhor senha</label>
+          <div class="underline"></div>
+        </div>
+
+        <div id="container_confirm" class="input-container-1">
+          <input type="password" id="input_confirm" required="" />
+          <label for="input" class="label">Confirme sua senha</label>
+          <div class="underline"></div>
+        </div>
+
+        <div id="container_empresa" class="input-container-1">
+          <input type="text" id="input_empresa" required="" />
+          <label for="input" class="label">Nome da sua empresa</label>
+          <div class="underline"></div>
+        </div>
+
+        <div id="container_cnpj" class="input-container-1">
+          <input type="text" id="input_cnpj" required="" />
+          <label for="input" class="label">CNPJ da sua empresa</label>
+          <div class="underline"></div>
+        </div>
+
+        <div id="container_telefone" class="input-container-1">
+          <input type="text" id="input_telefone" required="" />
+          <label for="input" class="label">Telefone ou Celular</label>
+          <div class="underline"></div>
+        </div>
+        <div>
+          <input onclick="switchInput()" type="checkbox" id="input_seePassword" />
+          <span id="span_ver">Ver senha</span>
+        </div>
+      </div>
+      <div style="width: 100%; text-align: center" id="outputCadastro"></div>
+
+      <button onclick="cadastrar()">
+        <div class="button">
+          <div id="img_button">
+            <img src="./assets/buttonAcess.svg" alt="" />
+          </div>
+          <p id="txt_button">Cadastrar</p>
+        </div>
+      </button>
+
+
+      <p>
+        Já possuí conta?
+        <span onclick="redirect('./acess.html')">Acesse a cloud</span>
+      </p>
+    </div>
+    <div id="image">
+      <img src="./assets/img_acess.png" alt="" />
+    </div>
+  </body>
+</html>
+<script>
+  // Array para armazenar empresas cadastradas para validação de código de ativação
+  let listaEmpresasCadastradas = [];
+
+  function cadastrar() {
+    // aguardar();
+
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var nomeVar = input_nome.value;
+    var emailVar = input_email.value;
+    var senhaVar = input_password.value;
+    var confirmacaoSenhaVar = input_confirm.value;
+    var empresaVar = input_empresa.value;
+    var cnpjVar = input_cnpj.value;
+    var telefoneVar = input_telefone.value;
+    var idEmpresaVincular;
+
+    // Caracteres Esp. = !@#$%
+    var senhaIgual = false;
+    var caracteresSpecial_ok = false;
+    var number_ok = false;
+    var letraMinuscula_ok = false;
+    var letraMaiuscula_ok = false;
+    var email_ok = false;
+    var senha_ok = false;
+    var cnpj_ok = false;
+    var telefone_ok = false;
+
+    var outputMessage = "";
+
+    // Verificando se há algum campo em branco
+    if (
+      nomeVar == "" ||
+      emailVar == "" ||
+      senhaVar == "" ||
+      confirmacaoSenhaVar == "" ||
+      empresaVar == "" ||
+      cnpjVar == "" ||
+      telefoneVar == ""
+    ) {
+      container_nome.classList.add("red");
+      container_email.classList.add("red");
+      container_password.classList.add("red");
+      container_confirm.classList.add("red");
+      container_empresa.classList.add("red");
+      container_cnpj.classList.add("red");
+      container_telefone.classList.add("red");
+      outputMessage += "Preencha todos os campos,";
+    } else {
+      container_nome.classList.remove("red");
+      container_email.classList.remove("red");
+      container_password.classList.remove("red");
+      container_confirm.classList.remove("red");
+      container_empresa.classList.remove("red");
+      container_cnpj.classList.remove("red");
+      container_telefone.classList.remove("red");
+    }
+
+    if (emailVar.includes("@") && emailVar.includes(".")) {
+      email_ok = true;
+      container_email.classList.remove("red");
+    } else {
+      container_email.classList.add("red");
+      outputMessage += " Email inválido,";
+    }
+
+    if (cnpjVar.length != 14 && !isNaN(cnpjVar) == true) {
+      outputMessage += " CNPJ inválido,";
+      container_cnpj.classList.add("red");
+    } else {
+      cnpj_ok = true;
+      container_cnpj.classList.remove("red");
+    }
+
+    if ((telefoneVar.length >= 11 && telefoneVar.length <= 12) && !isNaN(telefoneVar) == true) {
+      telefone_ok = true;
+      container_telefone.classList.remove("red");1
+    } else {
+      container_telefone.classList.add("red");
+      outputMessage += " Telefone inválido,";
+    }
+
+    if (
+      senhaVar == confirmacaoSenhaVar &&
+      (senhaVar != "" || confirmacaoSenhaVar != "")
+    ) {
+      if (senhaVar.length < 8) {
+        outputMessage += " Senha sem a quantidade necessária de caracteres,";
+        container_password.classList.add("red");
+      }
+
+      senhaIgual = true;
+
+      for (let i = 0; i < senhaVar.length; i++) {
+        var letraAtual = senhaVar[i];
+        var LetraMaius = letraAtual.toUpperCase();
+        var LetraMinus = letraAtual.toLowerCase();
+
+        if (
+          letraAtual.includes("!") ||
+          letraAtual.includes("@") ||
+          letraAtual.includes("#") ||
+          letraAtual.includes("$") ||
+          letraAtual.includes("%")
+        ) {
+          caracteresSpecial_ok = true;
+        } else if (isNaN(letraAtual)) {
+          if (letraAtual == LetraMaius) {
+            letraMaiuscula_ok = true;
+          }
+          if (letraAtual == LetraMinus) {
+            letraMinuscula_ok = true;
+          }
+        }
+
+        if (!isNaN(letraAtual)) {
+          number_ok = true;
+        }
+      }
+
+      if (caracteresSpecial_ok == false) {
+        container_password.classList.add("red");
+        container_confirm.classList.add("red");
+        outputMessage += " Adicione caracter especial (!@#$%),";
+      }
+      if (number_ok == false) {
+        container_password.classList.add("red");
+        container_confirm.classList.add("red");
+        outputMessage += " Adicione numeros a sua senha, ";
+      }
+      if (letraMaiuscula_ok == false) {
+        container_password.classList.add("red");
+        container_confirm.classList.add("red");
+        outputMessage += " Adicione letra maiuscula a sua senha, ";
+      }
+      if (letraMinuscula_ok == false) {
+        container_password.classList.add("red");
+        container_confirm.classList.add("red");
+        outputMessage += " Adicione letra minuscula a sua senha, ";
+      }
+    } else {
+      container_password.classList.add("red");
+      container_confirm.classList.add("red");
+      outputMessage += ", Senha não está igual a confirmação";
+    }
+
+    outputCadastro.innerHTML = outputMessage;
+
+    console.log(
+      senhaIgual,
+      caracteresSpecial_ok,
+      number_ok,
+      letraMinuscula_ok,
+      letraMaiuscula_ok,
+      email_ok,
+      cnpj_ok,
+      telefone_ok
+    );
+
+    if (
+      senhaIgual &&
+      caracteresSpecial_ok &&
+      number_ok &&
+      letraMinuscula_ok &&
+      letraMaiuscula_ok &&
+      email_ok &&
+      cnpj_ok &&
+      telefone_ok
+    ) {
+      container_nome.classList.remove("red");
+      container_email.classList.remove("red");
+      container_password.classList.remove("red");
+      container_confirm.classList.remove("red");
+      container_empresa.classList.remove("red");
+      container_cnpj.classList.remove("red");
+      container_telefone.classList.remove("red");      // Enviando o valor da nova input
+      fetch("/usuarios/cadastrar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          // crie um atributo que recebe o valor recuperado aqui
+          // Agora vá para o arquivo routes/usuario.js
+          nomeServer: nomeVar,
+          emailServer: emailVar,
+          senhaServer: senhaVar,
+          telefoneServer: telefoneVar,
+          empresaServer: empresaVar,
+          cnpjServer: cnpjVar,
+        }),
+      })
+        .then(function (resposta) {
+          console.log("resposta: ", resposta);
+
+          if (resposta.ok) {
+            // cardErro.style.display = "block";
+
+            // mensagem_erro.innerHTML =
+            //   "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+            setTimeout(() => {
+              window.location = "acess.html";
+            }, "2000");
+
+            // limparFormulario();
+          } else {
+            throw "Houve um erro ao tentar realizar o cadastro!";
+          }
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+        });
+
+      return false;
+    } else {
+      return false;
+    }
+  }
+</script>
