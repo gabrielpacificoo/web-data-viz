@@ -176,20 +176,20 @@
     function atualizarFeed() {
         fetch("/avisos/listar").then(function (resposta) {
             if (resposta.ok) {
-                if (resposta.status == 204) {
-                    var feed = document.getElementById("feed_container");
-                    var mensagem = document.createElement("span");
-                    mensagem.innerHTML = "Nenhum resultado encontrado."
+                if (resposta.status == 204) { // Caso der erro
+                    var feed = document.getElementById("feed_container"); // div style
+                    var mensagem = document.createElement("span"); // tipo de mensagem
+                    mensagem.innerHTML = "Nenhum resultado encontrado." 
                     feed.appendChild(mensagem);
                     throw "Nenhum resultado encontrado!!";
                 }
 
-                resposta.json().then(function (resposta) {
-                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+                resposta.json().then(function (resposta) { 
+                    console.log("Dados recebidos: ", JSON.stringify(resposta)); // Exibe os dados capturados no console
 
-                    var feed = document.getElementById("feed_container");
+                    var feed = document.getElementById("feed_container"); // div style
                     feed.innerHTML = "";
-                    for (let i = 0; i < resposta.length; i++) {
+                    for (let i = 0; i < resposta.length; i++) { // Repete em quanto tiver as postagem para exibi-las
                         var publicacao = resposta[i];
 
                         // criando e manipulando elementos do HTML via JavaScript
@@ -201,7 +201,6 @@
                         var divButtons = document.createElement("div");
                         var btnEditar = document.createElement("button");
                         var btnDeletar = document.createElement("button");
-
 
                         spanID.innerHTML = "ID: <b>" + publicacao.idAviso + "</b>";
                         spanTitulo.innerHTML = "Título: <b>" + publicacao.titulo + "</b>";
@@ -226,6 +225,7 @@
                         btnDeletar.id = "btnDeletar" + publicacao.idAviso;
                         btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAviso})`);
 
+                        // Função para colocar os elementos dentro da DivPublicação
                         divPublicacao.appendChild(spanID);
                         divPublicacao.appendChild(spanNome);
                         divPublicacao.appendChild(spanTitulo);

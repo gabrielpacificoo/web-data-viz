@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/managmentStyle.css">
+    <link rel="stylesheet" href="../css/general.css">
+
+    <script src="../js/sessao.js"></script>
+
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="navegation">
+        <h1 id="nomeEmpresa">Empresa</h1>
+        <p>Seja bem vindo <span id="userName"><i>Nome do usuário!</i></span></p>
+
+        <div id="layoutSections">
+            <div id="btn_dashboard" class="button" ><img src="../assets/AnaliseInfo.svg" alt=""> <span>Análise de informações</span></div>
+            <div id="btn_veiculos" class="button" onclick="openDisplay('veiculos')"><img src="../assets/cadVeiculo.svg" alt=""> <span>Cadastro de veículos</span></div>
+            <div id="btn_cliente" class="button" onclick="openDisplay('clientes')" ><img src="../assets/cadCliente.svg" alt=""> <span>Cadastro de clientes</span></div>
+            <div id="btn_transito" class="button" onclick="openDisplay('orcamentos')"><img src="../assets/regEntradaSaida.svg" alt=""> <span>Registro de entrada e saída</span></div>
+            <div id="btn_orcamento" class="button" ><img src="../assets/regOrcamento.svg" alt=""> <span>Registro de orçamentos</sp></div>
+            <div onclick="redirect('../index.html'); limparSessao()" id="btn_leave" class="leave" ><span>Sair</sp></div>
+        </div>
+
+        <p id="ajuda">Está precisando de suporte? <span>Entre em contato conosco</span></p>
+    </div>
+
+    <div id="content">
+      <div id="dashboard"></div>
+      <div id="veiculos">
+        <h1>Cadastro de veículos</h1>
+        
+        <div class="content">
+          <h4>Lembre-se de realizar o cadastro do Cliente inicialmente para poder cadastrar os veículos</h4>
+
+          <div id="informacoesVeiculo">
+
+          <p>Informe o cliente do veículo:</p> 
+          <select name="" id="select_clientVeiculo">
+            <option value="#" selected disabled>Selecione um cliente</option>
+          </select>
+
+          <p>Informe a Marca do veículo</p>
+          <input placeholder="Ex: 'Ford'" type="text" id="input_marca">
+
+          <p>Informe a Modelo do veículo</p>
+          <input placeholder="Ex: 'Ecosport'" type="text" id="input_modelo">
+
+          <p>Informe o Ano de fabricação do veículo</p>
+          <input placeholder="Ex: '2002'" type="text" id="input_ano">
+
+          <p>Informe a Placa  do veículo</p>
+          <input placeholder="Ex: '7 Dígitos'" type="text" id="input_placa">
+        </div>
+
+
+          <button onclick="CadastrarVeiculo()">Cadastrar Veículo</button>
+
+          <div id="outputVeiculo"></div>
+        </div>
+
+      </div>
+      <div id="clientes">
+        <h1>Cadastro de clientes</h1>
+
+        <div class="content">
+          <div class="content_cliente">
+            <p>Informe o nome completo do Cliente:</p>
+            <div class="iptContainer">
+              <input type="text" id="input_nomeCliente">
+              <div class="iptLine"></div>
+            </div>
+  
+            <p>Email do Cliente:</p>
+            <p>Telefone do Cliente:</p>
+            <div class="iptContainer">
+              <input type="text" id="input_emailCliente">
+              <div class="iptLine"></div>
+            </div>
+
+            <div class="iptContainer">
+              <input type="number" id="input_telefoneCliente">
+              <div class="iptLine"></div>
+            </div>
+  
+            <p>CPF do Cliente:</p>
+            <div class="iptContainer">
+              <input type="number" id="input_cpfCliente">
+              <div class="iptLine"></div>
+            </div>
+            
+          </div>
+          <div class="content_empresa">
+            <p>Serviço destinado a uma Empresa:</p>
+            <!-- /* From Uiverse.io by elizama987 */  -->
+            <!-- <label class="container">
+              <input type="checkbox" />
+              <div class="checkmark"></div>
+            </label>             -->
+            <input onclick="switchCheckBox()" id="input_toEmpresa" type="checkbox" checked="checked"/>
+
+            <p id="txtEmpresa1">Nome da Empresa:</p>
+            <div id="containerEmpresa" class="iptContainer">
+              <input type="text" id="input_empresaCliente">
+              <div class="iptLine"></div>
+            </div>
+            
+            <p id="txtEmpresa2">CNPJ da Empresa:</p>
+            <div id="containerCNPJ" class="iptContainer">
+              <input type="text" id="input_cnpjCliente">
+              <div class="iptLine"></div>
+            </div>
+
+          </div>
+          <button id="button_cliente" onclick="cadastrarCliente()">Cadastrar Cliente</button>
+          <div id="outputCadastroCliente"></div>
+          
+        </div>
+      </div>
+      <div id="orcamentos">
+        <h1>Registro de orçamento</h1>
+
+        <p>Selecione o Cliente:</p> 
+        <select name="" id="select_client">
+          <option value="#" selected disabled>Selecione um cliente</option>
+        </select>
+
+        <p>Selecione o Veículo:</p> 
+        <select name="" id="select_veiculo">
+          <option value="#" selected disabled>Selecione um veículo</option>
+        </select>
+
+        <div id="servicos">
+          <div id="modalServico">
+            1° - Tipo do serviço: 
+            <select name="" id="select_service">
+              <option value="#" selected disabled>Selecione o tipo de serviço</option>
+              <option value="Funilaria">Funilaria</option>
+              <option value="Pintura">Pintura</option>
+              <option value="Mecanica">Mecanica</option>
+            </select>
+            Descrição do serviço: 
+            <textarea id="input_descricao" name="w3review" rows="1" cols="30">
+              
+              </textarea>
+            Valor:
+            <input type="number" id="input_valor">
+          </div>
+        </div>
+
+        <button onclick="moreOption()">Adicionar coluna</button>
+      </div>
+      <div id="transito"></div>
+    </div>
+  </body>
+</html>
+<script>
+  userName.innerHTML = sessionStorage.NOME_USUARIO;
+  nomeEmpresa.innerHTML = sessionStorage.NOME_EMPRESA;
+
+  document.body.onload = chkUndefined();
+  document.body.onload = ListarClientes();
+  
+  input_toEmpresa.checked = false;
+  containerEmpresa.style.display = 'none'
+  containerCNPJ.style.display = 'none' 
+  txtEmpresa1.style.display = 'none' 
+  txtEmpresa2.style.display = 'none' 
+
+  var listaClientes = []
+    var id = sessionStorage.ID_USUARIO;
+
+  // veiculos.style.display = 'none'
+  // clientes.style.display = 'none'
+  // orcamentos.style.display = 'none'
+
+  function openDisplay(pageID) {
+  veiculos.style.display = 'none'
+  clientes.style.display = 'none'
+  orcamentos.style.display = 'none'
+
+  document.getElementById(pageID).style.display = 'block  '
+  }
+
+  function chkUndefined() {
+    if (sessionStorage.NOME_USUARIO == undefined) {
+      redirect('../index.html')
+    } else {
+      console.log('Ta ok')
+    }    
+  }
+
+  function CadastrarVeiculo() {
+    var idClienteVar = select_clientVeiculo.value;
+    var marcaVar = input_marca.value;
+    var modeloVar = input_modelo.value;
+    var anoVar = input_ano.value;
+    var placaVar = input_placa.value;
+
+    if ( idClienteVar == '#' || marcaVar == '' ||
+        modeloVar == '' ||
+        anoVar == '' ||
+        placaVar == '') {
+        outputVeiculo.innerHTML = 'Preencha campos!'
+        return
+        }
+
+    fetch("/empresas/cadastrarVeiculo", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        idCliente: idClienteVar,
+        marca: marcaVar,
+        modelo: modeloVar,
+        ano: anoVar,
+        placa: placaVar
+      }),
+    })
+      .then(function (resposta) {     
+        marcaVar = '';
+        modeloVar = '';
+        anoVar = '';
+        placaVar = '';
+
+        outputVeiculo.innerHTML = 'Veiculo cadastrado com sucesso!'
+
+        console.log('Veiculo cadastrado', resposta)
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+
+        outputVeiculo.innerHTML = 'Falha ao cadastrar o veículo!'
+      });
+    }
+
+  function cadastrarCliente() {
+    // Dados do cliente:
+    var nomeVar = input_nomeCliente.value;
+    var emailVar = input_emailCliente.value;
+    var telefoneVar = input_telefoneCliente.value;
+    var cpfVar = input_cpfCliente.value;
+    var empresaVar = input_empresaCliente.value;
+    var cnpjVar = input_cnpjCliente.value;
+    var chkEmpresa = input_toEmpresa.checked;
+
+
+
+
+    fetch("/empresas/cadastrarCliente", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        chkEmpresa: chkEmpresa,
+        idMecanico: id,
+        nome: nomeVar,
+        email: emailVar,
+        telefone: telefoneVar,
+        cpf: cpfVar,
+        empresa: empresaVar,
+        cnpj: cnpjVar
+      }),
+    })
+      .then(function (resposta) {     
+
+        outputCadastroCliente.innerHTML = 'Cliente cadastrado com sucesso! Agora é póssível seleciona-lo em outras sessões para facilitar a utilização da ferramenta.'
+
+        console.log('Veiculo cadastrado', resposta)
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+
+        outputCadastroCliente.innerHTML = 'Falha ao cadastrar o cliente! Certifique-se que todas informações estão inseridas corretamente.'
+      });
+    }
+
+  function ListarClientes() {
+
+    console.log('ID USUARIO:', sessionStorage.ID_USUARIO)
+
+    if (sessionStorage.ID_USUARIO == undefined) {
+      console.log('ID_USUARIO ESTÁ UNFEDINED')
+    } else {
+
+    fetch("/empresas/listar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: sessionStorage.ID_USUARIO      
+      }),
+    })
+      .then(function (resposta) {
+        resposta.json().then((empresas) => {
+          empresas.forEach((empresa) => {
+            listaClientes.push(empresa);
+
+            console.log("listaEmpresasCadastradas")
+          });
+        });
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+
+      // Plottar os clientes
+      setTimeout(() => {
+        var msg = '<option value="#">Selecione um cliente</option>';
+
+        for (let i = 0; i < listaClientes.length; i++) {
+          msg += `
+          <option value="${listaClientes[i].idCliente}">${listaClientes[i].nome}</option>
+          `
+        }
+        console.log(msg)
+        // Select's do Veículo e Orçamento
+        document.getElementById('select_client').innerHTML = msg; 
+        document.getElementById('select_clientVeiculo').innerHTML = msg; 
+      }, 100);
+    }
+  }
+
+
+
+</script>

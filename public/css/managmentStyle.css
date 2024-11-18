@@ -1,0 +1,286 @@
+* {
+  font-family: "Poppins", sans-serif;
+  margin: 0px;
+}
+
+body {
+  display: flex;
+}
+
+body #navegation {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  justify-content: center;
+  width: 25%;
+  height: max-content;
+
+  background-color: #1f4e79;
+}
+
+body #navegation #nomeEmpresa {
+  color: #fff;
+  font-size: 6vh;
+  width: 100%;
+  margin: 5% 0% 2.5% 0%;
+  text-align: center;
+}
+
+body #navegation p {
+  color: #fff;
+  font-size: 2.5vh;
+  width: 100%;
+  padding: 0% 8%;
+}
+
+body #navegation p #userName {
+  color: #202020;
+  font-weight: bold;
+  font-style: italic;
+}
+
+body #navegation #layoutSections {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 60%;
+  margin: 15% 0% 0% 0%;
+}
+
+body #navegation .button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 5vh;
+  margin: 0% 0% 10% 0%;
+  padding: 5% 10%;
+  background-color: #212121;
+  border-radius: 2vh;
+  cursor: pointer;
+}
+
+body #navegation .button img {
+  width: 2.5vw;
+}
+
+body #navegation .button span {
+  font-size: 2.1vh;
+  width: 100%;
+  margin: 0% 0% 0% 5%;
+  color: #9b9999;
+  font-weight: 550;
+}
+
+body #navegation .leave {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  width: 30%;
+  height: 5vh;
+  padding: 2.5% 10%;
+  background-color: #fb504e;
+  border-radius: 5vh;
+}
+
+body #navegation .leave span {
+  font-size: 3vh;
+
+  color: #fff;
+}
+
+body #navegation #ajuda {
+  margin: 8vh 0% 0% 0%;
+  color: #ffffff;
+}
+
+body #navegation #ajuda span {
+  color: #ffc857;
+}
+
+body #content {
+  width: 75%;
+}
+
+body #content h1 {
+  font-size: 8vh;
+  width: 100%;
+}
+
+/* Section Veiculos */
+body #content #veiculos {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 2.5% 5%;
+}
+
+body #content #veiculos .content {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #E8E8E8;
+  height: 72.5vh;
+  padding: 2.5%;
+  flex-direction: row;
+  align-content: flex-start;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+body #content #veiculos .content h4 {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 2.5%;
+}
+
+body #content #veiculos .content #informacoesVeiculo {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  align-items: center;
+}
+
+body #content #veiculos .content #informacoesVeiculo p {
+  width: 100%;
+  color: #404040;
+  font-size: 2vh;
+  font-weight: 600;
+
+}
+
+body #content #veiculos .content #informacoesVeiculo input,
+body #content #veiculos .content #informacoesVeiculo select {
+  appearance: none;
+  -webkit-appearance: none;
+
+  background-color: #fff;
+  border: none;
+  width: 20vw;
+  font-size: 2vh;
+  padding: 2vh 1vw;
+  margin: 1% 0%;
+}
+
+body #content #veiculos .content #outputVeiculo {
+  width: 100%;
+  font-weight: lighter;
+  font-size: 2.5vh;
+  margin-top: 2.5%;
+}
+
+body #content #veiculos .content button {
+  margin-top: .5%;
+}
+
+/* Section Cliente */
+body #content #clientes {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 2.5% 5%;
+}
+
+body #content #clientes .content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  
+  padding: 2.5%;
+  width: 100%;
+
+  background-color: #e8e8e8;
+}
+
+body #content #clientes #outputCadastroCliente {
+  width: 100%;
+  padding: 2.5%;
+}
+
+body #content #clientes .content .content_empresa {
+  width: 30%;
+  margin-left: 5%;
+  margin-right: 10%;
+  height: 45vh;
+}
+
+body #content #clientes .content .content_cliente {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  justify-content: center;
+  align-items: center;
+
+  width: 45%;
+  height: 45vh;
+}
+
+body #content #clientes .content .content_cliente p,
+body #content #clientes .content .content_empresa p {
+  color: #404040;
+  font-size: 2vh;
+  font-weight: 600;
+  width: 100%;
+  height: fit-content;
+  margin: 0rem 0px;
+  /* margin: 2.5vh 0% 0.5vh 2vw; */
+}
+
+body #content #clientes .content .content_cliente input,
+body #content #clientes .content .content_empresa input {
+  width: 100%;
+  height: 1.5rem;
+  border: none;
+}
+
+body #content #clientes .content .content_empresa .iptContainer,
+body #content #clientes .content .content_empresa input[type="checkbox"] {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+body #content #clientes .content .content_cliente .iptContainer {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+body #content #clientes .content .content_cliente p:nth-child(4),
+body #content #clientes .content .content_cliente .iptContainer:nth-child(5) {
+  width: 47.5%;
+  text-align: center;
+  margin: 0% 2.5% 0% 0%;
+}
+
+body #content #clientes .content .content_cliente p:nth-child(3),
+body #content #clientes .content .content_cliente .iptContainer:nth-child(6) {
+  width: 47.5%;
+  text-align: center;
+  margin: 0% 0% 0% 2.5%;
+}
+
+body #content #clientes .content .content_cliente input:nth-child(5) {
+  margin-right: 3%;
+}
+
+body #content #clientes .content .content_cliente .iptContainer:nth-child(5),
+body #content #clientes .content .content_cliente .iptContainer:nth-child(6) {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* body #content #clientes .content .content_cliente p:nth-child(3), 
+body #content #clientes .content .content_cliente p:nth-child(4) {
+  width: 50%;
+  margin: 2.5vh auto 0.5vh auto;
+  text-align: center;
+} */
+
+body #content #clientes .content .content_empresa input[type="checkbox"] {
+  background-color: #fff;
+  border-radius: 0px;
+  width: 2rem;
+  height: 2rem;
+}

@@ -172,12 +172,14 @@
             clearTimeout(proximaAtualizacao);
         }
 
+        // Fetch = Requisição do Back-end
         fetch(`/medidas/ultimas/${idAquario}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse();
 
+                    // Função para plotar o grafico inicialmente
                     plotarGrafico(resposta, idAquario);
 
                 });
@@ -208,14 +210,14 @@
                 data: [],
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
+                tension: .1
             },
             {
                 label: 'Temperatura',
                 data: [],
                 fill: false,
                 borderColor: 'rgb(199, 52, 52)',
-                tension: 0.1
+                tension: .1
             }]
         };
 
@@ -224,6 +226,7 @@
         console.log(resposta)
 
         // Inserindo valores recebidos em estrutura para plotar o gráfico
+        // Enquanto ainda tiver resposta ele continua inserindo;
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
             labels.push(registro.momento_grafico);
@@ -251,6 +254,7 @@
             config
         );
 
+        // Aparece o grafico pela primeira vez
         setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
     }
 
@@ -263,7 +267,8 @@
     function atualizarGrafico(idAquario, dados, myChart) {
 
 
-
+        // Requisição para o Back-end para trazer o dado mais recente e atualizar o gráfico
+        // Invoca a terceira função para gerar a recursividade
         fetch(`/medidas/tempo-real/${idAquario}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (novoRegistro) {
